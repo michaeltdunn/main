@@ -207,6 +207,11 @@
                     }
                 });
 
+                // If scrolled to the bottom of the page, highlight the last section
+                if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+                    current = sections[sections.length - 1].getAttribute("id");
+                }
+
                 navLi.forEach((a) => {
                     a.classList.remove("active");
                     if (a.getAttribute('href') == `#${current}`) {
