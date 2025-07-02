@@ -24,7 +24,6 @@
             padding: 0;
             background: var(--background-color);
             color: var(--on-background-color);
-            display: flex;
         }
 
         .sidebar {
@@ -64,10 +63,9 @@
             color: var(--on-primary-color);
         }
 
-        .container {
-            margin-left: 250px;
+        .main-content {
+            margin-left: 270px; /* Adjusted for sidebar width + padding */
             padding: 2rem;
-            max-width: calc(100% - 250px);
         }
 
         h1, h2, h3 {
@@ -144,7 +142,7 @@
         </ul>
     </nav>
 
-    <div class="container">
+    <div class="main-content">
         <header class="section">
             <h1>Michael's Portfolio</h1>
             <p>Welcome to my professional portfolio. Here you can find a summary of my work experience and technical projects.</p>

@@ -1,0 +1,1 @@
+Using VS Code, I cloned the repo to start editing the page.  Then, while in the github directory, I used Gemini to create the HTML and CSS for the page itself.  
