@@ -26,45 +26,43 @@
             color: var(--on-background-color);
         }
 
-        .sidebar {
-            width: 180px;
+        .top-nav {
             background: var(--surface-color);
-            padding: 2rem;
-            height: 100vh;
             position: fixed;
-            overflow-y: auto;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        .sidebar h2 {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid var(--primary-color);
-            padding-bottom: 1rem;
-        }
-
-        .sidebar ul {
+        .top-nav ul {
             list-style: none;
             padding: 0;
+            margin: 0;
+            display: flex;
         }
 
-        .sidebar ul li a {
+        .top-nav ul li a {
             color: var(--on-surface-color);
             text-decoration: none;
-            display: block;
             padding: 0.75rem 1.5rem;
             border-radius: 4px;
-            margin-bottom: 0.5rem;
+            margin: 0 0.5rem;
             transition: background-color 0.3s ease;
         }
 
-        .sidebar ul li a:hover,
-        .sidebar ul li a.active {
+        .top-nav ul li a:hover,
+        .top-nav ul li a.active {
             background-color: var(--primary-color);
             color: var(--on-primary-color);
         }
 
         .main-content {
-            margin-left: 220px; /* Adjusted for new sidebar width + padding */
+            padding-top: 80px; /* Adjusted for top nav height */
             padding: 2rem;
         }
 
@@ -133,8 +131,7 @@
     </style>
 </head>
 <body>
-    <nav class="sidebar">
-        <h2>Navigation</h2>
+    <nav class="top-nav">
         <ul>
             <li><a href="#about">About Me</a></li>
             <li><a href="#experience">Experience</a></li>
@@ -197,14 +194,14 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const sections = document.querySelectorAll(".section");
-            const navLi = document.querySelectorAll(".sidebar ul li a");
+            const navLi = document.querySelectorAll(".top-nav ul li a");
 
             window.onscroll = () => {
                 var current = "";
 
                 sections.forEach((section) => {
                     const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 60) {
+                    if (pageYOffset >= sectionTop - 80) { // Adjusted for top nav height
                         current = section.getAttribute("id");
                     }
                 });
