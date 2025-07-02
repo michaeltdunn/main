@@ -24,12 +24,50 @@
             padding: 0;
             background: var(--background-color);
             color: var(--on-background-color);
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: var(--surface-color);
+            padding: 2rem;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--primary-color);
+            padding-bottom: 1rem;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li a {
+            color: var(--on-surface-color);
+            text-decoration: none;
+            display: block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar ul li a:hover,
+        .sidebar ul li a.active {
+            background-color: var(--primary-color);
+            color: var(--on-primary-color);
         }
 
         .container {
-            max-width: 960px;
-            margin: 2rem auto;
+            margin-left: 250px;
             padding: 2rem;
+            max-width: calc(100% - 250px);
         }
 
         h1, h2, h3 {
@@ -52,6 +90,8 @@
 
         .section {
             margin-bottom: 3rem;
+            padding-top: 4rem; 
+            margin-top: -4rem;
         }
 
         .card {
@@ -95,13 +135,22 @@
     </style>
 </head>
 <body>
+    <nav class="sidebar">
+        <h2>Navigation</h2>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+        </ul>
+    </nav>
+
     <div class="container">
         <header class="section">
             <h1>Michael's Portfolio</h1>
             <p>Welcome to my professional portfolio. Here you can find a summary of my work experience and technical projects.</p>
         </header>
 
-        <section class="section">
+        <section id="about" class="section">
             <h2>About Me</h2>
             <div class="card">
                 <p>
@@ -110,7 +159,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <section id="experience" class="section">
             <h2>Professional Experience</h2>
             <div class="card">
                 <h3>Company Name | Job Title</h3>
@@ -131,7 +180,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <section id="projects" class="section">
             <h2>Technical Projects</h2>
             <div class="card">
                 <h3>Project Name 1</h3>
@@ -146,5 +195,30 @@
         </section>
 
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll(".section");
+            const navLi = document.querySelectorAll(".sidebar ul li a");
+
+            window.onscroll = () => {
+                var current = "";
+
+                sections.forEach((section) => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 60) {
+                        current = section.getAttribute("id");
+                    }
+                });
+
+                navLi.forEach((a) => {
+                    a.classList.remove("active");
+                    if (a.getAttribute('href') == `#${current}`) {
+                        a.classList.add("active");
+                    }
+                });
+            };
+        });
+    </script>
 </body>
 </html>
